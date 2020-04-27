@@ -6,7 +6,8 @@ const productModel = new mongoose.Schema({
   quantity:{type: Number, default:5},
   description:{type:String , default:"Seller did not provide any description."},
   type:{type:String, required:true},
-  seller: {type: mongoose.Schema.Types.ObjectId, ref:"user", required:true}
+  seller: {type: mongoose.Schema.Types.ObjectId, ref:"user", required:true},
+  images:Array
 })
 
 module.exports = {

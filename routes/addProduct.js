@@ -3,14 +3,14 @@ const {productModel} = require('../models/product.model')
 const router = express.Router()
 
 
-function saveProduct({name,price,quantity,description,type,imageUrl='',seller}){
+function saveProduct({name,price,quantity,description,type,images,seller}){
   const prod = new productModel({
     name,
     price,
     quantity,
     description,
     type,
-    imageUrl,
+    images,
     seller
   })
   return prod.save()
@@ -18,14 +18,15 @@ function saveProduct({name,price,quantity,description,type,imageUrl='',seller}){
 
 
 router.post("/",(req,res)=>{
-  const {name , price, quantity, description, type, seller} = req.body;
+  const {name , price, quantity, description, type, seller, images} = req.body;
   const prodRes = saveProduct({
     name,
     price,
     quantity,
     description,
     type,
-    seller
+    seller,
+    images
   })
   prodRes
   .then((data)=>{
