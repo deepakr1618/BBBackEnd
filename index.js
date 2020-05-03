@@ -17,6 +17,7 @@ const {patchCartRouter} = require("./routes/patchCart")
 
 const {getProductsRouter} = require('./routes/getProducts')
 const {getUserRouter} = require('./routes/getUser')
+const {getCartRouter} = require("./routes/getCart")
 
 
 
@@ -44,6 +45,7 @@ app.use("/api/products",patchProductRouter)
 app.use("/api/user",addUserRouter)
 app.use("/api/user",getUserRouter)
 app.use("/api/cart",addToCartRouter)
+app.use("/api/cart",getCartRouter)
 app.use("/api/cart",patchCartRouter)
 
 app.listen(3000,()=>{

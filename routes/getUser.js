@@ -24,7 +24,7 @@ router.get("/",(req,res)=>{
 })
 
 
-router.get("/:id",(req,res)=>{
+router.get("/firebase/:id",(req,res)=>{
   const firebaseUID = req.params.id
   userModel.findOne({firebaseUID})
   .then((data)=>{

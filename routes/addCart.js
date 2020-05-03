@@ -8,30 +8,66 @@ router.post("/addToCart",(req,res)=>{
   console.log("Adding to cart")
   const {mUserId , payload} = req.body
   const {productId, quantity} = payload
-  console.log(payload)
-  userModel.findOneAndUpdate({
-      _id: mUserId
-    }, {
-    $push: { 
-      cart: {
-        productId,
-        quantity
-      }
-    } 
-  },{new:true})
+  console.log(payload.productId)
+  userModel.find({
+    "cart.productId": payload.productId
+  })
   .exec()
   .then((data)=>{
-    res.status(201).json({
-      "status":"success",
-      "data":data
-    })
+    if(data.length>0){
+      let newCart = data;
+      newCart[0].cart.map((cartItem)=>{
+        if(cartItem.productId == productId){
+          cartItem.quantity += 1
+        }
+        return cartItem
+      });
+      userModel.findOneAndUpdate({
+          _id: mUserId
+        }, {
+          cart: newCart[0].cart
+      })
+      .exec()
+      .then((data)=>{
+        res.status(201).json({
+          "status":"success",
+          "data":data
+        })
+      })
+      .catch((err)=>{
+        res.status(500).json({
+          "status":"failure",
+          "data":err
+        })
+      })
+    }
+    else{
+        userModel.findOneAndUpdate({
+          _id: mUserId
+        }, {
+        $push: { 
+          cart: {
+            productId,
+            quantity
+          }
+        } 
+      },{new:true})
+      .exec()
+      .then((data)=>{
+        res.status(201).json({
+          "status":"success",
+          "data":data
+        })
+      })
+      .catch((err)=>{
+        res.status(500).json({
+          "status":"failure",
+          "data":err
+        })
   })
-  .catch((err)=>{
-    res.status(500).json({
-      "status":"failure",
-      "data":err
-    })
+    }
   })
+  
 })
 
 module.exports = {

@@ -26,13 +26,13 @@ router.post("/editCart",(req,res)=>{
     .exec()
     .then((data)=>{
       res.status(201).json({
-        "message":"success",
+        "status":"success",
         "data": data
       })
     })
     .catch((err)=>{
       res.status(500).json({
-        "message":"failure",
+        "status":"failure",
         "data": err
       })
     })
@@ -49,13 +49,13 @@ router.post("/editCart",(req,res)=>{
     .exec()
     .then((data)=>{
       res.status(201).json({
-        "message":"success",
+        "status":"success",
         "data": data
       })
     })
     .catch((err)=>{
       res.status(500).json({
-        "message":"failure",
+        "status":"failure",
         "data": err
       })
     })
