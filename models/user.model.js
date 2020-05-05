@@ -12,7 +12,8 @@ const userModel = new mongoose.Schema({
     street : String,
     city: String,
     pincode : Number
-  }
+  },
+  email: {type:String, default:"NO_EMAIL"}
 })
 
 module.exports = {

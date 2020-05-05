@@ -28,11 +28,20 @@ router.get("/firebase/:id",(req,res)=>{
   const firebaseUID = req.params.id
   userModel.findOne({firebaseUID})
   .then((data)=>{
-    res.status(201)
-    .json({
-      "status":"success",
-      "data":data
-    })
+    if(data){
+      res.status(201)
+      .json({
+        "status":"success",
+        "data":data
+      })
+    }
+    else{
+      res.status(201)
+      .json({
+        "status":"NEW_USER",
+        "data":data
+      })
+    }
   })
   .catch((err)=>{
     res.status(500)

@@ -3,23 +3,26 @@ const {userModel} = require('../models/user.model')
 const router = express.Router()
 
 
-function saveUser({name,address,firebaseUID,cart=[]}){
+function saveUser({firebaseUID,name,address,email,cart=[]}){
   const user = new userModel({
     firebaseUID,
     name,
     address,
-    cart
+    cart,
+    email
   })
   return user.save()
 }
 
 
 router.post("/",(req,res)=>{
-  const {name,address, firebaseUID} = req.body;
+  const {name,address, firebaseUID, email} = req.body;
+  console.log(email)
   const userRes = saveUser({
     firebaseUID,
     name,
-    address
+    address,
+    email
   })
   userRes
   .then((data)=>{
