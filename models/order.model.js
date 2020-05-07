@@ -9,7 +9,7 @@ const orderModel = new mongoose.Schema({
     quantity: {type:Number, default:1}
   }
   ],
-  completed: {type: Boolean, default: false},
+  orderStatus: {type: String, default: "Order Placed"},
   address:{
     houseNo : Number,
     street : String,

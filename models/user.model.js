@@ -7,6 +7,9 @@ const userModel = new mongoose.Schema({
     productId: { type: mongoose.Schema.Types.ObjectId, ref:"product" , required:true},
     quantity: {type:Number, default:1}
   }],
+  orders:[{
+    orderId: { type: mongoose.Schema.Types.ObjectId, ref:"order" , required:true}
+  }],
   address:{
     houseNo : Number,
     street : String,

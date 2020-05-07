@@ -15,7 +15,9 @@ router.post("/addToCart",(req,res)=>{
   .exec()
   .then((data)=>{
     if(data.length>0){
+      //If the cart already has the item that's being added.
       let newCart = data;
+      //Using array because of find(), can be refactored to findOne() or something.
       newCart[0].cart.map((cartItem)=>{
         if(cartItem.productId == productId){
           cartItem.quantity += 1
@@ -42,6 +44,7 @@ router.post("/addToCart",(req,res)=>{
       })
     }
     else{
+        //If the cart is does not have the item being added. 
         userModel.findOneAndUpdate({
           _id: mUserId
         }, {

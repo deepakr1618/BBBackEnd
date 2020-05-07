@@ -1,4 +1,3 @@
-
 const {productModel} = require('./models/product.model.js')
 const mongoose = require('mongoose')
 const express = require('express')
@@ -9,16 +8,12 @@ const {addProductRouter} = require('./routes/addProduct')
 const {addUserRouter} = require('./routes/addUser')
 const {addToCartRouter} = require("./routes/addCart")
 
-
-
 const {patchProductRouter} = require('./routes/patchProduct')
 const {patchCartRouter} = require("./routes/patchCart")
-
 
 const {getProductsRouter} = require('./routes/getProducts')
 const {getUserRouter} = require('./routes/getUser')
 const {getCartRouter} = require("./routes/getCart")
-
 
 const {addOrderRouter} = require("./routes/addOrder")
 const {getOrderRouter} = require("./routes/getOrder")
