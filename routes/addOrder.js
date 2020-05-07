@@ -33,5 +33,5 @@ router.post("/makeOrder",(req,res)=>{
 })
 
 module.exports = {
-  addOrder: router
+  addOrderRouter: router
 }

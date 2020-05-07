@@ -3,7 +3,12 @@ const mongoose = require('mongoose')
 const orderModel = new mongoose.Schema({
   buyer:  { type: mongoose.Schema.Types.ObjectId, ref:"user", required:true },
   total: {type: Number, required:true},
-  cart: {type: Array , required:true},
+  cart: [
+    {
+    productId: { type: mongoose.Schema.Types.ObjectId, ref:"product" , required:true},
+    quantity: {type:Number, default:1}
+  }
+  ],
   completed: {type: Boolean, default: false},
   address:{
     houseNo : Number,

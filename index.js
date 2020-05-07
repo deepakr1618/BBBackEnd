@@ -20,8 +20,8 @@ const {getUserRouter} = require('./routes/getUser')
 const {getCartRouter} = require("./routes/getCart")
 
 
-const {addOrder} = require("./routes/addOrder")
-
+const {addOrderRouter} = require("./routes/addOrder")
+const {getOrderRouter} = require("./routes/getOrder")
 
 
 mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@bigbasketexample-wsjzx.mongodb.net/maindb?retryWrites=true&w=majority`, {
@@ -50,7 +50,8 @@ app.use("/api/user",getUserRouter)
 app.use("/api/cart",addToCartRouter)
 app.use("/api/cart",getCartRouter)
 app.use("/api/cart",patchCartRouter)
-app.use("/api/order",addOrder)
+app.use("/api/order",addOrderRouter)
+app.use("/api/order",getOrderRouter)
 
 app.listen(3000,()=>{
   console.log("REST Running at  3000")
