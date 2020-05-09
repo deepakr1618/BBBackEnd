@@ -18,8 +18,11 @@ const {getCartRouter} = require("./routes/getCart")
 const {addOrderRouter} = require("./routes/addOrder")
 const {getOrderRouter} = require("./routes/getOrder")
 
+const {getUnconfirmedOrder} = require("./routes/getUnconfirmedOrder")
 
-mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@bigbasketexample-wsjzx.mongodb.net/maindb?retryWrites=true&w=majority`, {
+const {confirmOrder} = require("./routes/confirmOrder")
+
+mongoose.connect(`mongodb+srv://satwik:yh9hgyvoIlridBlY@bigbasketexample-wsjzx.mongodb.net/maindb?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -47,6 +50,8 @@ app.use("/api/cart",getCartRouter)
 app.use("/api/cart",patchCartRouter)
 app.use("/api/order",addOrderRouter)
 app.use("/api/order",getOrderRouter)
+app.use("/api/seller", getUnconfirmedOrder)
+app.use("/api/confirmOrder", confirmOrder)
 
 app.listen(3000,()=>{
   console.log("REST Running at  3000")
