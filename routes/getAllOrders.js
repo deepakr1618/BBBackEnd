@@ -6,9 +6,9 @@ const router = express.Router()
 const {getProductDetails} = require('./getCart')
 
 router.get("/",(req,res)=>{
+  console.log("Called")
   orderModel
   .aggregate([
-      { "$match" : {"orderStatus":"Order Placed"}},
       { "$lookup" : {
           from: "products",
           localField: "cart.productId",
@@ -19,6 +19,7 @@ router.get("/",(req,res)=>{
   ])
   .exec()
   .then((data)=>{
+    console.log(data)
     res.status(201)
     .json({
       "status":"success",
@@ -41,5 +42,5 @@ router.get("/",(req,res)=>{
 
 
 module.exports = {
-  getUnconfirmedOrders: router,
+  getAllOrders: router,
 }

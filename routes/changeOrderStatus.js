@@ -15,14 +15,14 @@ function saveOrder({buyer,total,cart,address}){
 }
 
 
-router.post("/confirm",(req,res)=>{
-  const {orderId} = req.body
+router.post("/change",(req,res)=>{
+  const {orderId , status} = req.body
   orderModel.findOneAndUpdate(
     {
       _id: orderId
     },
     {
-      orderStatus: "Out For Delivery"
+      orderStatus: status
     },
     {new: true}
   )
@@ -41,5 +41,5 @@ router.post("/confirm",(req,res)=>{
 })
 
 module.exports = {
-  confirmOrderRouter: router
+  changeOrderStatus: router
 }
