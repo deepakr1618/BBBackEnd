@@ -54,6 +54,29 @@ app.use("/api/order",getOrderRouter)
 app.use("/api/seller",getAllOrders)
 app.use("/api/seller",changeOrderStatus)
 
+app.get("/**",(req,res)=>{
+  res.json({
+    "subject":"Web Development",
+    "Project":"Big Basket Clone",
+    "Technologies Used": {
+      "Docker":true,
+      "Angular":true,
+      "Express":true,
+      "MongoDB":true,
+    },
+    "Team":[
+      "Deepak","Sathwik B"
+    ]
+  })
+})
+
+app.post("/**",(req,res)=>{
+  res.json({
+    "status":"failure",
+    "message":"End point does not exist."
+  })
+})
+
 app.listen(3000,()=>{
   console.log("REST Running at  3000")
 })
